@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Blademove : MonoBehaviour
 {
-
+//this comment is just to commit
     Vector3 initPos;
    
     // Start is called before the first frame update
