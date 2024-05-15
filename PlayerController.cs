@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,14 +22,18 @@ public class PlayerController : MonoBehaviour
 	//public float playerSetZ;
     public bool isOnGround = true;
     
+    
 
     //public Text Beans;
 
 
-    //public float CanOfBeans = 0;
+    public int CanOfBeans;
+    public TextMeshProUGUI Beans;
+    public int pointValue;
     // Start is called before the first frame update
     void Start()
     {
+        Beans.text = "CAN O' BEANS: " + CanOfBeans;
         PlayerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         //textbox = GetComponent<Text>();
@@ -74,8 +80,15 @@ public class PlayerController : MonoBehaviour
         }else if(collision.gameObject.CompareTag("Collectable"))
         {
             Destroy(collision.gameObject);
-           // CanOfBeans += 1;
+            CanOfBeans = 0;
+            UpdateBean(pointValue);
         }
+
+    }
+
+    public void UpdateBean(int scoreUp){
+        CanOfBeans += scoreUp;
+         Beans.text = "CAN O' BEANS: " + CanOfBeans;
     }
 
 }
